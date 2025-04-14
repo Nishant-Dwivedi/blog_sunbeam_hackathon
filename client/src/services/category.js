@@ -1,5 +1,5 @@
 import { config } from './config';
-
+import axios from 'axios';
 // delete 
 export async function deleteCategory(id) {
     try {
@@ -20,14 +20,19 @@ export async function deleteCategory(id) {
 
 export async function getCategories() {
     try {
-        const url = `${config.serverUrl}/category/`;
+        const url = `${config.serverUrl}/categories/`;
         const token = sessionStorage.getItem('token');
         const response = await axios.get(url, {
             headers: {
                 token,
             },
         })
-        return response.data;
+        console.log(response);
+        const result = {
+            status: response.status,
+            data: response.data
+        }
+        return result;
     } catch (error) {
         console.error('Error:', error);
     }
@@ -36,7 +41,7 @@ export async function getCategories() {
 // add category
 export async function addCategory(title, description) {
     try {
-        const url = `${config.serverUrl}/category/`;
+        const url = `${config.serverUrl}/categories/`;
         const body = { title, description }
         const token = sessionStorage.getItem('token');
         const response = await axios.post(url, body, {
@@ -44,7 +49,7 @@ export async function addCategory(title, description) {
                 token,
             },
         })
-        return response.data;
+        return response.status;
     } catch (error) {
         console.error('Error:', error);
     }

@@ -14,20 +14,7 @@ function Category() {
   });
 
   // State => Categories list
-  const [categories, setCategories] = useState([
-    {
-      title: "Recipes",
-      description: "Food Blog",
-    },
-    {
-      title: "Travel Guides",
-      description: "Travel Blog",
-    },
-    {
-      title: "Fashion Trends",
-      description: "Fashion Blog",
-    },
-  ]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     showCategories();
@@ -45,7 +32,9 @@ function Category() {
 
   const showCategories = async () => {
     const result = await getCategories();
-    if (result.status == "success") {
+    console.log(result);
+    
+    if (result.status == 200) {
       setCategories(result.data);
     } else toast.warn("Unable to get Categories");
   };
@@ -56,10 +45,12 @@ function Category() {
     else if (description.length == 0) toast.warn("Enter Description");
     else {
       const result = await addCategory(title, description);
-      if (result.status == "success") {
+      if (result == 200) {
         toast.success("Successfully added a category");
         showCategories();
-      } else toast.error(result.error);
+      }
+      else
+      console.log("err");
     }
   };
   return (
