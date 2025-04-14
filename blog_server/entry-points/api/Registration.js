@@ -16,7 +16,7 @@ registerationRouter.post('/', (req, res, next) => {
     connection.query(query, (err, dbRes) => {
         if (!err) {
             req.log.info(dbRes)
-            res.send(dbRes);
+            res.status(200).send(dbRes);
         } else {
             req.log.error(err)
             res.status(500).end();

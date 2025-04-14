@@ -28,7 +28,8 @@ App.use("/blogs", BlogsRouter);
 // MYBLOGS
 // GET /myblogs/ -> view blogs created by user: userId(token)
 // POST /myblogs/ -> create a blog for user: userId(token)
-// UPDATE /myblogs/ -> update blog(token);
+// UPDATE /myblogs/ -> update blog(token); user-blog
+// DELETE /myblogs/:blogId -> delete blog(token)
 App.use('/myblogs', MyBlogsRouter)
 
 // CATEGORIES
@@ -44,3 +45,4 @@ App.use('/register', RegisterationRouter);
 // AUTHENTICATE
 // POST /auhtenticate -> login
 App.use('/authenticate', AuthenticationRouter)
+
